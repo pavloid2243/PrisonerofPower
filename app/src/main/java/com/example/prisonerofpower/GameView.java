@@ -378,7 +378,7 @@ public class GameView extends View
         }
 
         private void stopGame() {
-            //ProfileInfo.Score=distance;
+            ProfileInfo.Score=distance;
             Activity activity = (Activity) getContext();
             activity.finish();
         }

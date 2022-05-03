@@ -129,25 +129,9 @@ public class Profile extends Activity implements View.OnClickListener{
                 database.delete(DBHelper.TABLE_CONTACTS,null,null);
                 break;*/
         }
-        dbHelper.close();
+        //dbHelper.close();
     }
-    /*public void addRow(String c0, String  c1) {
-        //Сначала найдем в разметке активити саму таблицу по идентификатору
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.table);
-        //Создаём экземпляр инфлейтера, который понадобится для создания строки таблицы из шаблона. В качестве контекста у нас используется сама активити
-        LayoutInflater inflater = LayoutInflater.from(this);
-        //Создаем строку таблицы, используя шаблон из файла /res/layout/table_row.xml
-        TableRow tr = (TableRow) inflater.inflate(R.layout.table_row, null);
-        //Находим ячейку для номера дня по идентификатору
-        TextView tv = (TextView) tr.findViewById(R.id.col1);
-        //Обязательно приводим число к строке, иначе оно будет воспринято как идентификатор ресурса
-        tv.setText(c0+ "   ");
-        //Ищем следующую ячейку и устанавливаем её значение
-        tv = (TextView) tr.findViewById(R.id.col2);
-        tv.setText(c1);
 
-        tableLayout.addView(tr); //добавляем созданную строку в таблицу
-    }*/
 
 
 }

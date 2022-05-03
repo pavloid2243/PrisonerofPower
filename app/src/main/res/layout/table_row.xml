@@ -8,4 +8,11 @@
     <TextView
         android:id="@+id/col2"
         android:text="" />
+    <TextView
+        android:id="@+id/col3"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/col4"
+        android:text="" />
 </TableRow>

@@ -28,13 +28,16 @@ public class StopGame extends Activity {
 
 
         Cursor cursor = Profile.database.query(DBHelper.TABLE_CONTACTS,null,null,null,null,null,null);
+        cursor.moveToFirst();
         if(cursor.moveToFirst())
         {
             int nameIndex = cursor.getColumnIndex((DBHelper.KEY_NAME));
             int passIndex = cursor.getColumnIndex((DBHelper.KEY_PASSWORD));
+            int scoreIndex = cursor.getColumnIndex((DBHelper.KEY_SCORE));
+            int levelsIndex = cursor.getColumnIndex((DBHelper.KEY_LEVELS));
 
             do{
-
+                //leaderboards.addRowStage(cursor.getString(nameIndex),cursor.getString(passIndex),cursor.getString(scoreIndex),cursor.getString(levelsIndex));
                 if(ProfileInfo.Name.equals(cursor.getString(nameIndex)))
                 { Log.d("mLog","YESss ");
                     if(ProfileInfo.Pass.equals(cursor.getString(passIndex)))
