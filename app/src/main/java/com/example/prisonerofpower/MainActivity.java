@@ -57,9 +57,15 @@ public class MainActivity extends Activity {
 
     }
     public void profile(View view) {
-
-        Intent intent = new Intent(this, Profile.class);
-        startActivity(intent);
+        if(Profile.LOGGED==true)
+        {
+            Intent intent = new Intent(this, ProfileInfo.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, Profile.class);
+            startActivity(intent);
+        }
 
     }
 

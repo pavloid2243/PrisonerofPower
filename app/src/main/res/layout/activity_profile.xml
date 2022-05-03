@@ -4,91 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     tools:context=".Profile">
 
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
+        android:layout_width="354dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="239dp"
+        android:layout_marginTop="134dp"
         android:ems="10"
+        android:hint="Write your name"
         android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+         />
 
     <EditText
         android:id="@+id/editTextTextPassword3"
-        android:layout_width="wrap_content"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="73dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="238dp"
+        android:layout_marginTop="185dp"
         android:ems="10"
+        android:hint="Write your password"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="parent"
+
         tools:layout_editor_absoluteY="64dp" />
 
     <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:layout_width="167dp"
+        android:layout_height="80dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="136dp"
-        android:text="Add"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="245dp"
+        android:text="Sign in"
+
         tools:layout_editor_absoluteY="116dp" />
 
     <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/button5"
+        android:layout_width="167dp"
+        android:layout_height="80dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="136dp"
-        android:text="Read"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="114dp" />
+        android:layout_marginStart="421dp"
+        android:layout_marginTop="245dp"
+        android:text="Sign up"
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="116dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="352dp"
+        android:layout_height="55dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="6dp"
-        android:text="Delete"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="114dp" />
-
-    <TableLayout
-        android:id="@+id/table"
-        android:layout_width="578dp"
-        android:layout_height="370dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="6dp">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="72dp" />
-
-
-
-
-    </TableLayout>
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="76dp"
+        android:textAlignment="center"
+        android:textColor="#F30D0D"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
