@@ -1,10 +1,14 @@
 package com.example.prisonerofpower;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,13 +18,43 @@ import androidx.annotation.Nullable;
 
 public class StopGame extends Activity {
 
-
+    DBHelper dbHelper;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_stop_game);
+
+
+        Cursor cursor = Profile.database.query(DBHelper.TABLE_CONTACTS,null,null,null,null,null,null);
+        if(cursor.moveToFirst())
+        {
+            int nameIndex = cursor.getColumnIndex((DBHelper.KEY_NAME));
+            int passIndex = cursor.getColumnIndex((DBHelper.KEY_PASSWORD));
+
+            do{
+
+                if(ProfileInfo.Name.equals(cursor.getString(nameIndex)))
+                { Log.d("mLog","YESss ");
+                    if(ProfileInfo.Pass.equals(cursor.getString(passIndex)))
+                    {
+
+                        Profile.contentValues.put(DBHelper.KEY_SCORE,ProfileInfo.Score);
+                        Profile.contentValues.put(DBHelper.KEY_LEVELS,ProfileInfo.Levels);
+                    }
+                }
+            } while(cursor.moveToNext());
+
+        }
+        else
+            Log.d("mLog","0 rows");
+
+
+        cursor.close();
+
+
+
 
     }
     public void gotoMenu(View view)

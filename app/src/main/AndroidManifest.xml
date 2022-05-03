@@ -11,13 +11,16 @@
         android:theme="@style/Theme.PrisonerOfPower">
         <activity
             android:name=".leaderboards"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ProfileInfo"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".Profile"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".StopGame"
             android:exported="true"

@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:screenOrientation="landscape"
+
     tools:context=".Profile">
 
 
@@ -18,8 +20,7 @@
         android:layout_marginTop="134dp"
         android:ems="10"
         android:hint="Write your name"
-        android:inputType="textPersonName"
-         />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editTextTextPassword3"

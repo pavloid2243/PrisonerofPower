@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -23,12 +24,15 @@ public class Profile extends Activity implements View.OnClickListener{
     EditText etName;
     EditText etPass;
     TextView etError;
-    DBHelper dbHelper;
+    static DBHelper dbHelper;
     Button btnAdd,btnLog,btnDelete;
+    public static SQLiteDatabase database;
+    public static ContentValues contentValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_profile);
@@ -53,13 +57,14 @@ public class Profile extends Activity implements View.OnClickListener{
     {
         String name =etName.getText().toString();
         String pass =etPass.getText().toString();
-        SQLiteDatabase database = dbHelper.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
+        database = dbHelper.getWritableDatabase();
+         contentValues = new ContentValues();
         switch (v.getId())
         {
             case R.id.button5:
                 contentValues.put(DBHelper.KEY_NAME,name);
                 contentValues.put(DBHelper.KEY_PASSWORD,pass);
+
                 database.insert(DBHelper.TABLE_CONTACTS,null,contentValues);
                 LOGGED=true;
                 Log.d("mLog","aa");
@@ -76,10 +81,7 @@ public class Profile extends Activity implements View.OnClickListener{
                     int passIndex = cursor.getColumnIndex((DBHelper.KEY_PASSWORD));
 
                     do{
-                        Log.d("mLog",cursor.getString(nameIndex));
-                        Log.d("mLog",cursor.getString(passIndex));
-                        Log.d("mLog","name = " +name);
-                        Log.d("mLog","pass = "+pass);
+
                         if(name.equals(cursor.getString(nameIndex)))
                         { Log.d("mLog","YESss ");
                             if(pass.equals(cursor.getString(passIndex)))
