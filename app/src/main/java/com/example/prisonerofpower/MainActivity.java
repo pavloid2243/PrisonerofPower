@@ -23,7 +23,7 @@ import android.view.animation.AnimationUtils;
 
 public class MainActivity extends Activity {
 
-boolean translate=true;
+
 
 
     @Override
@@ -48,7 +48,7 @@ boolean translate=true;
 
     Intent intent = new Intent(this,StartGame.class);
     startActivity(intent);
-    translate=false;
+
     }
     public void shop(View view) {
 
@@ -56,21 +56,19 @@ boolean translate=true;
         startActivity(intent);
 
     }
-    public static void stop(View view)
-    {
+    public void profile(View view) {
 
-        new MainActivity().methodForStop(view);
-
-
-    }
-
-    public void methodForStop(View view) {
-
-       Intent intent = new Intent(MainActivity.this, StopGame.class);
+        Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
 
-
     }
 
+    @Override
+    protected void onRestart() {
 
+        super.onRestart();
+        Intent intent = new Intent(this, StopGame.class);
+        startActivity(intent);
+        finish();
+    }
 }

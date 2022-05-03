@@ -4,16 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StopGame">
+    tools:context=".StopGame"
+    android:background="@drawable/menu_blur">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="342dp"
         android:layout_height="wrap_content"
+
         android:layout_centerInParent="true"
-        android:text="Loser"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:alpha="1"
+        android:backgroundTint="#00FFFFFF"
+        android:text="Поражение"
+        android:textColor="#000000"
+        android:textSize="60dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="68dp"
+        android:layout_height="76dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:onClick="gotoMenu"
+        android:src="@drawable/gotomenu" />
+
 </RelativeLayout>

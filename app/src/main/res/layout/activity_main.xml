@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     android:gravity="center"
 
-
-
-
-
     tools:context=".MainActivity"
     android:background="@drawable/menu">
 
@@ -48,6 +44,18 @@
         android:clickable="true"
         android:onClick="shop"
         android:src="@drawable/shop_3426" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:onClick="profile"
+        android:text="Профиль" />
 
 
 </RelativeLayout>

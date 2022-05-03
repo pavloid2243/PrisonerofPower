@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrisonerOfPower">
         <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
             android:name=".StopGame"
             android:exported="true"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".Shop"
             android:exported="true"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".StartGame"
             android:exported="true"
