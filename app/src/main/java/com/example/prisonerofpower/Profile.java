@@ -62,6 +62,7 @@ public class Profile extends Activity implements View.OnClickListener{
         switch (v.getId())
         {
             case R.id.button5:
+
                 contentValues.put(DBHelper.KEY_NAME,name);
                 contentValues.put(DBHelper.KEY_PASSWORD,pass);
 

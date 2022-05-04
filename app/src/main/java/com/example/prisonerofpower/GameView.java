@@ -378,7 +378,7 @@ public class GameView extends View
         }
 
         private void stopGame() {
-            ProfileInfo.Score=distance;
+
             Activity activity = (Activity) getContext();
             activity.finish();
         }
@@ -568,6 +568,7 @@ public class GameView extends View
             s=String.valueOf(f);
             maxChar=s.indexOf(".");
             s=s.substring(0, maxChar+2);
+            ProfileInfo.Score=distance;
             return s;
         }
     private boolean Condition(int i) {

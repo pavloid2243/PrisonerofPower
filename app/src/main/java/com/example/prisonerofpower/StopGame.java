@@ -35,16 +35,22 @@ public class StopGame extends Activity {
             int passIndex = cursor.getColumnIndex((DBHelper.KEY_PASSWORD));
             int scoreIndex = cursor.getColumnIndex((DBHelper.KEY_SCORE));
             int levelsIndex = cursor.getColumnIndex((DBHelper.KEY_LEVELS));
-
+            ContentValues contentValues = new ContentValues();
             do{
                 //leaderboards.addRowStage(cursor.getString(nameIndex),cursor.getString(passIndex),cursor.getString(scoreIndex),cursor.getString(levelsIndex));
                 if(ProfileInfo.Name.equals(cursor.getString(nameIndex)))
                 { Log.d("mLog","YESss ");
+                    String where= DBHelper.KEY_NAME+"="+ProfileInfo.Name;
                     if(ProfileInfo.Pass.equals(cursor.getString(passIndex)))
                     {
-
-                        Profile.contentValues.put(DBHelper.KEY_SCORE,ProfileInfo.Score);
-                        Profile.contentValues.put(DBHelper.KEY_LEVELS,ProfileInfo.Levels);
+                        /*contentValues.put(DBHelper.KEY_NAME,ProfileInfo.Name);
+                        contentValues.put(DBHelper.KEY_PASSWORD,ProfileInfo.Pass);
+                        contentValues.put(DBHelper.KEY_SCORE,ProfileInfo.Score);
+                        contentValues.put(DBHelper.KEY_LEVELS,ProfileInfo.Levels);*/
+                        Profile.database.insert(DBHelper.TABLE_CONTACTS,null,contentValues);
+                        Profile.database.update(DBHelper.TABLE_CONTACTS, contentValues, where, null);
+                       // DBHelper.put(Profile.database,ProfileInfo.Score,cursor.getString(nameIndex));
+                        Log.d("mLog",ProfileInfo.Score);
                     }
                 }
             } while(cursor.moveToNext());
