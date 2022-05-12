@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class ProfileInfo extends AppCompatActivity {
 
     public static String Name,Pass,Score,Levels;
+    public static float ScoreInt;
     TextView twName,twPass,twScore,twLevels;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

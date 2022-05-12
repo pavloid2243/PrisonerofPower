@@ -16,6 +16,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -57,7 +58,7 @@ public class GameView extends View
 
 
 
-
+    int counterForStopGame = 0;//Счетчик для окончания игры,когда врезался впрепятствие     Это я так от проблемы со счетчиком ушел
     float stopping =-0.09f; //сила споротивления -- тянет игрока влево
 
     boolean firststep= true; // проверка на первый шаг игрока
@@ -87,6 +88,8 @@ public class GameView extends View
         private boolean gameStateRun = false;
         private float bgX=0;
         private float bg1X;
+        private boolean DoNotFall = true;
+        public static int Score;
 
         public GameView(Context context) {
         super(context);
@@ -139,12 +142,6 @@ public class GameView extends View
         display.getSize(point);
         dHeight=point.y;
         dWight=point.x;
-
-
-
-
-
-
 
 
         playerX=dWight/4 -player[playerFrame].getWidth()/2;
@@ -330,7 +327,7 @@ public class GameView extends View
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Logic();
-        //LogicForPrep();
+        LogicForObstacles();
 
 
 
@@ -341,7 +338,7 @@ public class GameView extends View
         canvas.drawBitmap(player[playerFrame], playerX, playerY, null);
         canvas.drawBitmap(bot1[botFrame], bot1X, bot1Y, null);
         canvas.drawBitmap(bot2[botFrame], bot2X, bot2Y, null);
-        //canvas.drawBitmap(prep, prepX, dHeight/2 +180, null);
+        canvas.drawBitmap(prep, prepX, dHeight/2 +180, null);
 
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
@@ -368,9 +365,9 @@ public class GameView extends View
 
     }
 
-        private void LogicForPrep() {
+        private void LogicForObstacles() {
             prepX-=speedRace;
-            if(prepX<=playerX+prep.getWidth()/2 && prepX>=playerX-prep.getWidth()/2 && isgrounded) { stopGame();}
+            if(prepX<=playerX+prep.getWidth()/2 && prepX>=playerX-prep.getWidth()/2 && isgrounded) { DoNotFall=false; }
             System.out.println(playerX);
             System.out.println(prepX);
             if(prepX<=-3000){prepX=dWight+1000;}
@@ -378,14 +375,15 @@ public class GameView extends View
         }
 
         private void stopGame() {
-
+            ProfileInfo.ScoreInt+=meters;
+            ProfileInfo.Score=String.valueOf(ProfileInfo.ScoreInt);
             Activity activity = (Activity) getContext();
             activity.finish();
         }
 
         private void Logic() {
 
-        if(Condition(0)) {
+        if(Condition(0) && DoNotFall) {
 
             if ((playerX < 900 && i==0)) {}
             else{
@@ -424,7 +422,6 @@ public class GameView extends View
                 }
 
                 Jump();
-
                 ChangeFrame();
 
                 if (Condition(2)) {
@@ -432,7 +429,7 @@ public class GameView extends View
                 } else {
 
                     if (speed > 0) {
-                        if (playerX >= dHeight * 2) {
+                        if (playerX >= dHeight * 2 ) {
                             playerX += 0;
                             speed = -2f;
                         } else {
@@ -467,8 +464,8 @@ public class GameView extends View
             handler.postDelayed(runnable, UPDATE_MILLIS);
         }
 
-        else{
-            stopGame();}
+        else stopGame();
+
     }
 
         private void ChangeFrame() {
@@ -568,7 +565,6 @@ public class GameView extends View
             s=String.valueOf(f);
             maxChar=s.indexOf(".");
             s=s.substring(0, maxChar+2);
-            ProfileInfo.Score=distance;
             return s;
         }
     private boolean Condition(int i) {

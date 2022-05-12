@@ -65,6 +65,8 @@ public class Profile extends Activity implements View.OnClickListener{
 
                 contentValues.put(DBHelper.KEY_NAME,name);
                 contentValues.put(DBHelper.KEY_PASSWORD,pass);
+                contentValues.put(DBHelper.KEY_SCORE,"0");
+                contentValues.put(DBHelper.KEY_LEVELS,"1");
 
                 database.insert(DBHelper.TABLE_CONTACTS,null,contentValues);
                 LOGGED=true;
@@ -80,6 +82,8 @@ public class Profile extends Activity implements View.OnClickListener{
 
                     int nameIndex = cursor.getColumnIndex((DBHelper.KEY_NAME));
                     int passIndex = cursor.getColumnIndex((DBHelper.KEY_PASSWORD));
+                    int scoreIndex = cursor.getColumnIndex((DBHelper.KEY_SCORE));
+                    int levelsIndex = cursor.getColumnIndex((DBHelper.KEY_LEVELS));
 
                     do{
 
@@ -90,10 +94,13 @@ public class Profile extends Activity implements View.OnClickListener{
                                 LOGGED=true;
                                 ProfileInfo.Name=name;
                                 ProfileInfo.Pass=pass;
+                                ProfileInfo.Score=cursor.getString(scoreIndex);
+                                ProfileInfo.Levels=cursor.getString(levelsIndex);
                                 proof=true;
                                 Log.d("mLog","YES ");
                                 Intent intent = new Intent(this, MainActivity.class);
                                 startActivity(intent);
+
                             }
                         }
                     } while(cursor.moveToNext());

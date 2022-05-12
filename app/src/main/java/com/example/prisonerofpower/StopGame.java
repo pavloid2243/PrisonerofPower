@@ -43,13 +43,14 @@ public class StopGame extends Activity {
                     String where= DBHelper.KEY_NAME+"="+ProfileInfo.Name;
                     if(ProfileInfo.Pass.equals(cursor.getString(passIndex)))
                     {
-                        /*contentValues.put(DBHelper.KEY_NAME,ProfileInfo.Name);
+                        contentValues.put(DBHelper.KEY_NAME,ProfileInfo.Name);
                         contentValues.put(DBHelper.KEY_PASSWORD,ProfileInfo.Pass);
                         contentValues.put(DBHelper.KEY_SCORE,ProfileInfo.Score);
-                        contentValues.put(DBHelper.KEY_LEVELS,ProfileInfo.Levels);*/
-                        Profile.database.insert(DBHelper.TABLE_CONTACTS,null,contentValues);
-                        Profile.database.update(DBHelper.TABLE_CONTACTS, contentValues, where, null);
-                       // DBHelper.put(Profile.database,ProfileInfo.Score,cursor.getString(nameIndex));
+                        contentValues.put(DBHelper.KEY_LEVELS,ProfileInfo.Levels);
+
+
+                        Profile.database.update(DBHelper.TABLE_CONTACTS, contentValues, "name = ?", new String[] {ProfileInfo.Name});
+                       //DBHelper.put(Profile.database,ProfileInfo.Score,cursor.getString(nameIndex));
                         Log.d("mLog",ProfileInfo.Score);
                     }
                 }
