@@ -29,8 +29,10 @@ public class Profile extends Activity implements View.OnClickListener{
     public static SQLiteDatabase database;
     public static ContentValues contentValues;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -71,7 +73,12 @@ public class Profile extends Activity implements View.OnClickListener{
                 database.insert(DBHelper.TABLE_CONTACTS,null,contentValues);
                 LOGGED=true;
                 Log.d("mLog","aa");
-                //finish();
+                ProfileInfo.Name=name;
+                ProfileInfo.Pass=pass;
+                ProfileInfo.Score="0";
+                ProfileInfo.Levels="1";
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.button4:
                 boolean proof =false;
@@ -98,8 +105,8 @@ public class Profile extends Activity implements View.OnClickListener{
                                 ProfileInfo.Levels=cursor.getString(levelsIndex);
                                 proof=true;
                                 Log.d("mLog","YES ");
-                                Intent intent = new Intent(this, MainActivity.class);
-                                startActivity(intent);
+                                Intent intent1 = new Intent(this, MainActivity.class);
+                                startActivity(intent1);
 
                             }
                         }

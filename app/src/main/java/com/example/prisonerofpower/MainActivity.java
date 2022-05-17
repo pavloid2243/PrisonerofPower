@@ -46,8 +46,15 @@ public class MainActivity extends Activity {
 
     public void startGame(View view){
 
-    Intent intent = new Intent(this,StartGame.class);
-    startActivity(intent);
+        if(Profile.LOGGED) {
+            Intent intent = new Intent(this, StartGame.class);
+            startActivity(intent);
+        }
+        else
+        {
+            Intent intent = new Intent(this, Profile.class);
+            startActivity(intent);
+        }
 
     }
     public void shop(View view) {

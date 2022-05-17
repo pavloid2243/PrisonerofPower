@@ -42,5 +42,11 @@ public class ProfileInfo extends AppCompatActivity {
         Intent intent = new Intent(this,leaderboards.class);
         startActivity(intent);
     }
+    public void LogOut(View view)
+    {
+        Profile.LOGGED=false;
+        Intent intent = new Intent(this,Profile.class);
+        startActivity(intent);
+    }
 
 }

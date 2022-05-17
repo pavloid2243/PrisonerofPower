@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
-import android.graphics.Rect;
 
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -42,7 +41,7 @@ public class GameView extends View
     Bitmap background,background_2,race,race1_1;
     Bitmap[] player;
     Bitmap[] bot1,bot2;
-    Bitmap prep;
+    Bitmap obtacles;
     Display display;
     Point point;
     int dWight,dHeight;
@@ -50,10 +49,11 @@ public class GameView extends View
     int botFrame = 0; // Для смены кадра движения у ботов
 
 
-        float prepX;
+        float obstaclesX;
 
     float playerX,bot1X,bot2X,raceX,race1X; //для позиций игрока и ботов по Х
     float playerY,bot1Y,bot2Y,raceY; // Можно избавиться     для позиций игрока и ботов по У
+    float playerYonGround;
     float speed; //для изменения playerX
 
 
@@ -126,7 +126,7 @@ public class GameView extends View
 
         background_2= BitmapFactory.decodeResource(getResources(),R.drawable.stadium);
 
-        prep=BitmapFactory.decodeResource(getResources(),R.drawable.prep);
+        obtacles =BitmapFactory.decodeResource(getResources(),R.drawable.obstacle);
 
         race= BitmapFactory.decodeResource(getResources(),R.drawable.race_3);
         race1_1= BitmapFactory.decodeResource(getResources(),R.drawable.race_3);
@@ -146,6 +146,7 @@ public class GameView extends View
 
         playerX=dWight/4 -player[playerFrame].getWidth()/2;
         playerY=dHeight/1.5f -40 -player[playerFrame].getHeight()/2;
+        playerYonGround=playerY;
 
         bot1X=dWight/4 -player[playerFrame].getWidth()/2;
         bot1Y=dHeight/1.5f-80 -player[playerFrame].getHeight()/2;
@@ -155,7 +156,7 @@ public class GameView extends View
         raceY=dHeight - race.getWidth()/5 +120;
         race1X=race.getWidth();
         bg1X=background.getWidth();
-        prepX=dWight;
+        obstaclesX =dWight;
 
 
 
@@ -338,7 +339,8 @@ public class GameView extends View
         canvas.drawBitmap(player[playerFrame], playerX, playerY, null);
         canvas.drawBitmap(bot1[botFrame], bot1X, bot1Y, null);
         canvas.drawBitmap(bot2[botFrame], bot2X, bot2Y, null);
-        canvas.drawBitmap(prep, prepX, dHeight/2 +180, null);
+
+        canvas.drawBitmap(obtacles, obstaclesX, dWight/4 , null);
 
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
@@ -366,11 +368,21 @@ public class GameView extends View
     }
 
         private void LogicForObstacles() {
-            prepX-=speedRace;
-            if(prepX<=playerX+prep.getWidth()/2 && prepX>=playerX-prep.getWidth()/2 && isgrounded) { DoNotFall=false; }
+            obstaclesX -=speedRace;
+            Log.d("mLog", String.valueOf(-playerY+playerYonGround));
+            Log.d("mLog", String.valueOf(obtacles.getHeight()/2));
+
+            if(obstaclesX <=playerX+ obtacles.getWidth()/2 &&
+                    obstaclesX >=playerX- obtacles.getWidth()/2 &&
+                    (isgrounded ||
+                    (playerYonGround-playerY<obtacles.getHeight()/2))
+
+            )
+            { DoNotFall=false; }
             System.out.println(playerX);
-            System.out.println(prepX);
-            if(prepX<=-3000){prepX=dWight+1000;}
+            System.out.println(obstaclesX);
+            if(obstaclesX <=-3000){
+                obstaclesX =dWight+1000;}
 
         }
 
@@ -379,6 +391,7 @@ public class GameView extends View
             ProfileInfo.Score=String.valueOf(ProfileInfo.ScoreInt);
             Activity activity = (Activity) getContext();
             activity.finish();
+
         }
 
         private void Logic() {

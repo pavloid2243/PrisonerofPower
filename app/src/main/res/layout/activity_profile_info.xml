@@ -143,4 +143,15 @@
         android:onClick="goToLeaderboards"
         android:text="Leaderboards" />
 
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="0dp"
+        android:onClick="LogOut"
+        android:text="Log out" />
+
 </RelativeLayout>
