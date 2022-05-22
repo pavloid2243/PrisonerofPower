@@ -79,6 +79,7 @@ public class Profile extends Activity implements View.OnClickListener{
                 ProfileInfo.Levels="1";
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                //database.delete(DBHelper.TABLE_CONTACTS,null,null);
                 break;
             case R.id.button4:
                 boolean proof =false;

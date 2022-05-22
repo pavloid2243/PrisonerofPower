@@ -50,7 +50,7 @@ public class StopGame extends Activity {
 
 
                         Profile.database.update(DBHelper.TABLE_CONTACTS, contentValues, "name = ?", new String[] {ProfileInfo.Name});
-                       //DBHelper.put(Profile.database,ProfileInfo.Score,cursor.getString(nameIndex));
+
                         Log.d("mLog",ProfileInfo.Score);
                     }
                 }

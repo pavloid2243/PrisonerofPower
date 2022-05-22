@@ -3,7 +3,10 @@ package com.example.prisonerofpower;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TableLayout;
@@ -16,6 +19,30 @@ public class leaderboards extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboards);
+        long i = DatabaseUtils.queryNumEntries(Profile.database, DBHelper.TABLE_CONTACTS);
+
+        Cursor cursor = Profile.database.query(DBHelper.TABLE_CONTACTS,null,null,null,null,null,"Score");
+        if(cursor.moveToFirst())
+        {
+
+            int nameIndex = cursor.getColumnIndex((DBHelper.KEY_NAME));
+            int passIndex = cursor.getColumnIndex((DBHelper.KEY_PASSWORD));
+            int scoreIndex = cursor.getColumnIndex((DBHelper.KEY_SCORE));
+            int levelsIndex = cursor.getColumnIndex((DBHelper.KEY_LEVELS));
+
+            do{
+               addRowStage(cursor.getString(nameIndex),cursor.getString(passIndex),cursor.getString(scoreIndex),cursor.getString(levelsIndex));
+
+
+            } while(cursor.moveToNext());
+
+        }
+        else
+            Log.d("mLog","0 rows");
+
+
+        cursor.close();
+
     }
     public void back(View view)
     {

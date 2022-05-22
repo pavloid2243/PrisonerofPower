@@ -23,11 +23,6 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    public static void put(SQLiteDatabase sqLiteDatabase,String score,String name) {
-
-        Log.d("mLog","UPDATE " + TABLE_CONTACTS+" SET " + KEY_SCORE +"="+score+" WHERE " + KEY_NAME+"="+name);
-        sqLiteDatabase.execSQL("UPDATE " + TABLE_CONTACTS+" SET " + KEY_SCORE +" = "+score+" WHERE " + KEY_NAME+" = "+name+";");
-    }
 
 
     @Override
