@@ -19,9 +19,14 @@ public class leaderboards extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboards);
+        addRows();
+
+    }
+
+    private void addRows() {
         long i = DatabaseUtils.queryNumEntries(Profile.database, DBHelper.TABLE_CONTACTS);
 
-        Cursor cursor = Profile.database.query(DBHelper.TABLE_CONTACTS,null,null,null,null,null,"Score");
+        Cursor cursor = Profile.database.query(DBHelper.TABLE_CONTACTS,null,null,null,null,null,"score");
         if(cursor.moveToFirst())
         {
 
@@ -31,7 +36,7 @@ public class leaderboards extends AppCompatActivity {
             int levelsIndex = cursor.getColumnIndex((DBHelper.KEY_LEVELS));
 
             do{
-               addRowStage(cursor.getString(nameIndex),cursor.getString(passIndex),cursor.getString(scoreIndex),cursor.getString(levelsIndex));
+                addRowStage(cursor.getString(nameIndex),cursor.getString(passIndex),cursor.getString(scoreIndex),cursor.getString(levelsIndex));
 
 
             } while(cursor.moveToNext());
@@ -44,6 +49,7 @@ public class leaderboards extends AppCompatActivity {
         cursor.close();
 
     }
+
     public void back(View view)
     {
         Intent intent = new Intent(this,MainActivity.class);
