@@ -8,6 +8,8 @@ import android.app.Activity;
 import android.content.Intent;
 
 import android.graphics.BitmapFactory;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import android.view.View;
@@ -25,6 +27,8 @@ public class MainActivity extends Activity {
 
 
 
+    MediaPlayer mPlayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,14 @@ public class MainActivity extends Activity {
 
        Animation animScale = AnimationUtils.loadAnimation(this, R.anim.start_button);
         imageView.startAnimation(animScale);
-
+        /*mPlayer= MediaPlayer.create(this, R.raw.cosmokid);
+        if(mPlayer.isPlaying()){
+            mPlayer.stop();
+        }
+        else {
+            mPlayer.start();
+            mPlayer.setLooping(true);
+        }*/
 
 
     }

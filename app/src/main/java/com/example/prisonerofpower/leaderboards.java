@@ -36,7 +36,7 @@ public class leaderboards extends AppCompatActivity {
             int levelsIndex = cursor.getColumnIndex((DBHelper.KEY_LEVELS));
 
             do{
-                addRowStage(cursor.getString(nameIndex),cursor.getString(passIndex),cursor.getString(scoreIndex),cursor.getString(levelsIndex));
+                addRow(cursor.getString(nameIndex),cursor.getString(passIndex),cursor.getString(scoreIndex),cursor.getString(levelsIndex));
 
 
             } while(cursor.moveToNext());

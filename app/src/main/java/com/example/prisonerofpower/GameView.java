@@ -1,6 +1,10 @@
 package com.example.prisonerofpower;
 
 
+
+
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.app.Activity;
 import android.content.Context;
 
@@ -12,6 +16,9 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -20,6 +27,7 @@ import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 
 import androidx.annotation.RequiresApi;
@@ -33,6 +41,9 @@ import java.util.TimerTask;
 
 public class GameView extends View
     {
+
+
+
     public static int lengthLevel;
     private final GestureDetectorCompat gd;
     Handler handler;
@@ -93,6 +104,7 @@ public class GameView extends View
 
         public GameView(Context context) {
         super(context);
+
 
         new CountDownTimer(5000, 1000) {
 
@@ -163,6 +175,7 @@ public class GameView extends View
         timer.schedule(new UpdateTimeTask(), 0, 10);
 
     }
+
     class UpdateTimeTask extends TimerTask {
             public void run() {
 
@@ -329,6 +342,7 @@ public class GameView extends View
         super.onDraw(canvas);
         Logic();
         LogicForObstacles();
+
 
 
 
