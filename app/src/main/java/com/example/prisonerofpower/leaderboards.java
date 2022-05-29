@@ -19,6 +19,8 @@ public class leaderboards extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboards);
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.table);
+        tableLayout.removeAllViewsInLayout();
         addRows();
 
     }

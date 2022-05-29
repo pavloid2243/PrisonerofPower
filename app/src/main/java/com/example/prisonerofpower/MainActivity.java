@@ -26,8 +26,9 @@ import android.view.animation.AnimationUtils;
 public class MainActivity extends Activity {
 
 
-
+    public static boolean nextLevel;
     MediaPlayer mPlayer;
+
 
 
     @Override
@@ -91,8 +92,15 @@ public class MainActivity extends Activity {
     protected void onRestart() {
 
         super.onRestart();
-        Intent intent = new Intent(this, StopGame.class);
-        startActivity(intent);
+        if(nextLevel)
+        {
+            Intent intent = new Intent(this, wining.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, StopGame.class);
+            startActivity(intent);
+        }
         finish();
     }
 }

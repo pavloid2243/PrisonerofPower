@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Prisoner of Power</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_win">win</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

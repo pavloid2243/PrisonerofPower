@@ -25,7 +25,8 @@ public class StartGame extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         gameView = new GameView(this);
         setContentView(gameView);
-        GameView.lengthLevel = 1000;
+        GameView.lengthLevel = wining.lenght;
+        MainActivity.nextLevel = false;
 
     }
 }

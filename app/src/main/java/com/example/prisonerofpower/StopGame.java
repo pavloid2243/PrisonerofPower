@@ -25,8 +25,18 @@ public class StopGame extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_stop_game);
+updatetable();
 
 
+
+
+    }
+    public void gotoMenu(View view)
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public static void updatetable(){
         Cursor cursor = Profile.database.query(DBHelper.TABLE_CONTACTS,null,null,null,null,null,null);
         cursor.moveToFirst();
         if(cursor.moveToFirst())
@@ -64,12 +74,5 @@ public class StopGame extends Activity {
         cursor.close();
 
 
-
-
-    }
-    public void gotoMenu(View view)
-    {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 }

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrisonerOfPower">
         <activity
+            android:name=".wining"
+            android:exported="false" />
+        <activity
             android:name=".leaderboards"
             android:exported="false"
             android:screenOrientation="sensorLandscape" />

@@ -137,7 +137,7 @@ public boolean loggin(String name, String pass, int i)
             {
                 Log.d("mLog",name);
                 Log.d("mLog",cursor.getString(nameIndex));
-                if(i==0) return true;
+                if(i==0) {return true;}
 
                 if(pass.equals(cursor.getString(passIndex)))
                 {

@@ -402,6 +402,7 @@ public class GameView extends View
 
         private void stopGame() {
 
+            if(meters>=lengthLevel) MainActivity.nextLevel=true;
             ProfileInfo.Score=ProfileInfo.Score+meters;
 
             Activity activity = (Activity) getContext();
