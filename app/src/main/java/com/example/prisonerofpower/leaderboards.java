@@ -35,7 +35,7 @@ public class leaderboards extends AppCompatActivity {
     private void addRows() {
         long i = DatabaseUtils.queryNumEntries(Profile.database, DBHelper.TABLE_CONTACTS);
 
-        Cursor cursor = Profile.database.query(DBHelper.TABLE_CONTACTS,null,null,null,null,null,"score");
+        Cursor cursor = Profile.database.query(DBHelper.TABLE_CONTACTS,null,null,null,null,null,"score desc");
         if(cursor.moveToFirst())
         {
 
