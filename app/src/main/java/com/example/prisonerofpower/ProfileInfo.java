@@ -13,8 +13,9 @@ import android.widget.TextView;
 
 public class ProfileInfo extends AppCompatActivity {
 
-    public static String Name,Pass,Score,Levels;
-    public static float ScoreInt;
+    public static String Name,Pass;
+    public static float Score;
+    public static int Levels;
     TextView twName,twPass,twScore,twLevels;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,8 @@ public class ProfileInfo extends AppCompatActivity {
         twPass.setText(Pass);
         twScore= (TextView) findViewById(R.id.textView9);
         twLevels= (TextView) findViewById(R.id.textView11);
-        twScore.setText(Score);
-        twLevels.setText(Levels);
+        twScore.setText(String.valueOf(Score));
+        twLevels.setText(String.valueOf(Levels));
 
     }
     public void back(View view)

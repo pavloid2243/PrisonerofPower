@@ -64,62 +64,33 @@ public class Profile extends Activity implements View.OnClickListener{
         switch (v.getId())
         {
             case R.id.button5:
+                if(loggin(name,pass,0)) etError.setText("There is a profile with this name");
+                else {
+                    contentValues.put(DBHelper.KEY_NAME, name);
+                    contentValues.put(DBHelper.KEY_PASSWORD, pass);
+                    contentValues.put(String.valueOf(DBHelper.KEY_SCORE), 0);
+                    contentValues.put(String.valueOf(DBHelper.KEY_LEVELS), 1);
 
-                contentValues.put(DBHelper.KEY_NAME,name);
-                contentValues.put(DBHelper.KEY_PASSWORD,pass);
-                contentValues.put(DBHelper.KEY_SCORE,"0");
-                contentValues.put(DBHelper.KEY_LEVELS,"1");
-
-                database.insert(DBHelper.TABLE_CONTACTS,null,contentValues);
-                LOGGED=true;
-                Log.d("mLog","aa");
-                ProfileInfo.Name=name;
-                ProfileInfo.Pass=pass;
-                ProfileInfo.Score="0";
-                ProfileInfo.Levels="1";
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                //database.delete(DBHelper.TABLE_CONTACTS,null,null);
+                    database.insert(DBHelper.TABLE_CONTACTS, null, contentValues);
+                    LOGGED = true;
+                    Log.d("mLog", "aa");
+                    ProfileInfo.Name = name;
+                    ProfileInfo.Pass = pass;
+                    ProfileInfo.Score = 0;
+                    ProfileInfo.Levels = 1;
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                    //database.delete(DBHelper.TABLE_CONTACTS,null,null);
+                }
                 break;
             case R.id.button4:
-                boolean proof =false;
-                Log.d("mLog","tt");
-                Cursor cursor = database.query(DBHelper.TABLE_CONTACTS,null,null,null,null,null,null);
-                if(cursor.moveToFirst())
-                {
 
-                    int nameIndex = cursor.getColumnIndex((DBHelper.KEY_NAME));
-                    int passIndex = cursor.getColumnIndex((DBHelper.KEY_PASSWORD));
-                    int scoreIndex = cursor.getColumnIndex((DBHelper.KEY_SCORE));
-                    int levelsIndex = cursor.getColumnIndex((DBHelper.KEY_LEVELS));
-
-                    do{
-
-                        if(name.equals(cursor.getString(nameIndex)))
-                        { Log.d("mLog","YESss ");
-                            if(pass.equals(cursor.getString(passIndex)))
-                            {
-                                LOGGED=true;
-                                ProfileInfo.Name=name;
-                                ProfileInfo.Pass=pass;
-                                ProfileInfo.Score=cursor.getString(scoreIndex);
-                                ProfileInfo.Levels=cursor.getString(levelsIndex);
-                                proof=true;
-                                Log.d("mLog","YES ");
-                                Intent intent1 = new Intent(this, MainActivity.class);
-                                startActivity(intent1);
-
-                            }
-                        }
-                    } while(cursor.moveToNext());
-
-                }
+                if(!loggin(name,pass,1)) etError.setText("Wrong name or password");
                 else
-                    Log.d("mLog","0 rows");
-
-
-                cursor.close();
-                if(!proof) etError.setText("Wrong name or password");
+                {
+                    Intent intent1 = new Intent(this, MainActivity.class);
+                    startActivity(intent1);
+                }
                 break;
             /*case R.id.button6:
                 Cursor cursor = database.query(DBHelper.TABLE_CONTACTS,null,null,null,null,null,null);
@@ -148,6 +119,45 @@ public class Profile extends Activity implements View.OnClickListener{
         //dbHelper.close();
     }
 
+public boolean loggin(String name, String pass, int i)
+{
 
+    Cursor cursor = database.query(DBHelper.TABLE_CONTACTS,null,null,null,null,null,null);
+    if(cursor.moveToFirst())
+    {
+
+        int nameIndex = cursor.getColumnIndex((DBHelper.KEY_NAME));
+        int passIndex = cursor.getColumnIndex((DBHelper.KEY_PASSWORD));
+        int scoreIndex = cursor.getColumnIndex(String.valueOf((DBHelper.KEY_SCORE)));
+        int levelsIndex = cursor.getColumnIndex(String.valueOf((DBHelper.KEY_LEVELS)));
+
+        do{
+
+            if(name.equals(cursor.getString(nameIndex)))
+            {
+                Log.d("mLog",name);
+                Log.d("mLog",cursor.getString(nameIndex));
+                if(i==0) return true;
+
+                if(pass.equals(cursor.getString(passIndex)))
+                {
+                    Log.d("mLog","gothere");
+                    LOGGED=true;
+                    ProfileInfo.Name=name;
+                    ProfileInfo.Pass=pass;
+                    ProfileInfo.Score=cursor.getFloat(scoreIndex);
+                    ProfileInfo.Levels=cursor.getInt(levelsIndex);
+                    return true;
+
+                }
+            }
+        } while(cursor.moveToNext());
+
+    }
+
+
+    cursor.close();
+   return false;
+}
 
 }

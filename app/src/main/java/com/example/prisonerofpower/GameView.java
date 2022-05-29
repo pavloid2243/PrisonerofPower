@@ -402,8 +402,8 @@ public class GameView extends View
 
         private void stopGame() {
 
-            ProfileInfo.ScoreInt=Float.parseFloat(ProfileInfo.Score)+meters;
-            ProfileInfo.Score=String.valueOf(ProfileInfo.ScoreInt);
+            ProfileInfo.Score=ProfileInfo.Score+meters;
+
             Activity activity = (Activity) getContext();
             activity.finish();
 
