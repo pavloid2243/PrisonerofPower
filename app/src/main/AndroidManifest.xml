@@ -8,21 +8,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PrisonerOfPower">
+        android:theme="@style/Theme.PrisonerOfPower"
+    >
         <activity
             android:name=".wining"
-            android:exported="false" />
-        <activity
-            android:name=".leaderboards"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="sensorLandscape" />
         <activity
+
+            android:name=".leaderboards"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape"
+           />
+        <activity
             android:name=".ProfileInfo"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".Profile"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".StopGame"

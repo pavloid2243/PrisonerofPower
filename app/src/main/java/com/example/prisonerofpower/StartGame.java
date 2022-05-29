@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 
 public class StartGame extends Activity {
     GameView gameView;
-
+ public static int lenght;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,7 +25,19 @@ public class StartGame extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         gameView = new GameView(this);
         setContentView(gameView);
-        GameView.lengthLevel = wining.lenght;
+        switch (ProfileInfo.Levels)
+        {
+            case 1:
+                lenght=100;
+                break;
+            case 2:lenght=300;
+                break;
+            case 3: lenght=500;
+                break;
+            case 4: lenght=1000;
+                break;
+        }
+        GameView.lengthLevel = lenght;
         MainActivity.nextLevel = false;
 
     }

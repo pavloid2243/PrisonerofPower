@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,7 +20,12 @@ public class leaderboards extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_leaderboards);
+
+
         TableLayout tableLayout = (TableLayout) findViewById(R.id.table);
         tableLayout.removeAllViewsInLayout();
         addRows();
@@ -38,7 +45,7 @@ public class leaderboards extends AppCompatActivity {
             int levelsIndex = cursor.getColumnIndex(String.valueOf((DBHelper.KEY_LEVELS)));
 
             do{
-                addRow(cursor.getString(nameIndex),cursor.getString(passIndex),cursor.getString(scoreIndex),cursor.getString(levelsIndex));
+                addRow(cursor.getString(nameIndex),cursor.getString(scoreIndex),cursor.getString(levelsIndex));
 
 
             } while(cursor.moveToNext());
@@ -57,11 +64,11 @@ public class leaderboards extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
-    public static void addRowStage(String c0, String  c1,String  c2,String  c3)
+    public static void addRowStage(String c0, String  c1,String  c2)
     {
-        new leaderboards().addRow(c0,c1,c2,c3);
+        new leaderboards().addRow(c0,c1,c2);
     }
-    public void addRow(String c0, String  c1,String  c2,String  c3) {
+    public void addRow(String c0, String  c1,String  c2) {
         //Сначала найдем в разметке активити саму таблицу по идентификатору
         TableLayout tableLayout = (TableLayout) findViewById(R.id.table);
         //Создаём экземпляр инфлейтера, который понадобится для создания строки таблицы из шаблона. В качестве контекста у нас используется сама активити
@@ -77,8 +84,7 @@ public class leaderboards extends AppCompatActivity {
         tv.setText(c1+ "   ");
         tv = (TextView) tr.findViewById(R.id.col3);
         tv.setText(c2+ "   ");
-        tv = (TextView) tr.findViewById(R.id.col4);
-        tv.setText(c3);
+
 
         tableLayout.addView(tr); //добавляем созданную строку в таблицу
     }

@@ -55,7 +55,8 @@
         android:layout_marginTop="15dp"
         android:clickable="true"
         android:onClick="profile"
-        android:text="Профиль" />
+        android:text="Профиль"
+        app:rippleColor="#9C27B0" />
 
 
 </RelativeLayout>
